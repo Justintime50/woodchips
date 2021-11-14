@@ -7,3 +7,5 @@ dist
 venv
 htmlcov
 .coverage
+.log
+logs

@@ -3,11 +3,6 @@ import setuptools
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
-REQUIREMENTS = [
-    # Add your list of production dependencies here, eg:
-    # 'requests == 1.*',
-]
-
 DEV_REQUIREMENTS = [
     'black',
     'coveralls == 3.*',
@@ -18,13 +13,13 @@ DEV_REQUIREMENTS = [
 ]
 
 setuptools.setup(
-    name='PROJECT_NAME_URL',
-    version='1.0.0',
-    description='Your project description here',
+    name='woodchips',
+    version='0.1.0',
+    description='The cutest little logger you\'ve ever seen.',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url='http://github.com/USERNAME/PROJECT_NAME_URL',
-    author='USERNAME',
+    url='http://github.com/justintime50/woodchips',
+    author='justintime50',
     license='MIT',
     packages=setuptools.find_packages(),
     classifiers=[
@@ -32,14 +27,8 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    install_requires=REQUIREMENTS,
     extras_require={
         'dev': DEV_REQUIREMENTS,
-    },
-    entry_points={
-        'console_scripts': [
-            'PROJECT_NAME_URL=project_name.my_module:main',
-        ]
     },
     python_requires='>=3.7',
 )
