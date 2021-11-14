@@ -4,12 +4,12 @@
 
 The cutest little logger you've ever seen.
 
-[![Build Status](https://github.com/justintime50/woodchips/workflows/build/badge.svg)](https://github.com/justintime50/woodchips/actions)
-[![Coverage Status](https://coveralls.io/repos/github/justintime50/woodchips/badge.svg?branch=main)](https://coveralls.io/github/justintime50/woodchips?branch=main)
+[![Build Status](https://github.com/Justintime50/woodchips/workflows/build/badge.svg)](https://github.com/Justintime50/woodchips/actions)
+[![Coverage Status](https://coveralls.io/repos/github/Justintime50/woodchips/badge.svg?branch=main)](https://coveralls.io/github/Justintime50/woodchips?branch=main)
 [![PyPi](https://img.shields.io/pypi/v/woodchips)](https://pypi.org/project/woodchips)
-[![Licence](https://img.shields.io/github/license/justintime50/woodchips)](LICENSE)
+[![Licence](https://img.shields.io/github/license/Justintime50/woodchips)](LICENSE)
 
-<img src="https://raw.githubusercontent.com/justintime50/assets/main/src/woodchips/showcase.png" alt="Showcase">
+<img src="https://raw.githubusercontent.com/Justintime50/assets/main/src/woodchips/showcase.png" alt="Showcase">
 
 </div>
 
