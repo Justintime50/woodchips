@@ -46,7 +46,9 @@ def setup(logger_name: str, log_location: str, log_level: str = 'INFO') -> loggi
         os.makedirs(log_location)
 
     file_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-    log_file = os.path.join(log_location, 'woodchips.log')
+    # Splitting on the period assuming the user specified `__name__`` so we can get the package name
+    log_name = logger_name.split('.')[0] + '.log'
+    log_file = os.path.join(log_location, log_name)
     file_handler = logging.handlers.RotatingFileHandler(
         log_file,
         maxBytes=DEFAULT_LOG_MAX_BYTES,

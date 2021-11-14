@@ -26,7 +26,7 @@ def test_setup(mock_make_dirs):
     mock_make_dirs.assert_called_once()
     assert logging.getLevelName(logger.getEffectiveLevel()) == 'INFO'
     assert logger.handlers[1].formatter._fmt == '%(asctime)s - %(levelname)s - %(message)s'
-    assert 'test/mock-dir/woodchips.log' in logger.handlers[1].baseFilename
+    assert 'test/mock-dir/test.log' in logger.handlers[1].baseFilename
     assert woodchips.logger.DEFAULT_LOG_MAX_BYTES == logger.handlers[1].maxBytes
     assert woodchips.logger.DEFAULT_LOG_BACKUP_COUNT == logger.handlers[1].backupCount
 
