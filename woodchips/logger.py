@@ -13,7 +13,7 @@ def setup(logger_name: str, log_location: str, log_level: str = 'INFO') -> loggi
 
     Each module that requires logging should instantiate this function and pass a
     new name based on the module using logging. Typically for most purposes, this
-    should be `__name__` passed as `logger_name`.
+    should be `__name__` passed as `logger_name` or the name of your package.
 
     TODO: Allow the user to specify if they want console/file logging or not.
     """

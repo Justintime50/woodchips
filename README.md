@@ -38,7 +38,7 @@ import woodchips
 
 
 logger = woodchips.setup(
-    logger_name=__name__,  # Should be the name of your module
+    logger_name=__name__,  # Should be the name of your package
     logger_location='my_path',
     logger_level='INFO'
 )
