@@ -1,2 +1,2 @@
 # flake8: noqa
-from woodchips.logger import setup
+from woodchips.logger import Logger
