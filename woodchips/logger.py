@@ -1,7 +1,6 @@
 import logging
 import logging.handlers
 import os
-from typing import Optional
 
 # 200kb * 5 files = 1mb of logs
 DEFAULT_LOG_MAX_BYTES = 200000  # 200kb
@@ -12,25 +11,27 @@ class Logger:
     def __init__(self, name: str, level: str = 'INFO'):
         """Setup a logger based on a provided set of input.
 
-        Each module that requires logging should instantiate a new class and pass a
+        * name: Each module that requires logging should instantiate a new class and pass a
         new name based on the module using logging. Typically for most purposes, this
         should be `__name__` passed as `name` or the name of your package.
+        * level: Every logger needs a level. Logged messages of a greater or equal value
+        to the log level will be shown.
+        * logger: This is the actual `logging.Logger` object wrapped on `woodchips.Logger`,
+        call your logging actions on this property such as `info()` or `warning()`.
         """
         self.name = name
         self.level = level
-
         self.logger = logging.getLogger(self.name)
+
         log_level = self._validate_log_level()
         self.logger.setLevel(log_level)
 
-    def log_to_console(self, formatter: Optional[str] = None) -> None:
+    def log_to_console(self, formatter: str = '%(message)s') -> None:
         """Adds a console handler to a logger."""
         console_handler = logging.StreamHandler()
 
-        if formatter:
-            console_formatter = logging.Formatter(formatter)
-            console_handler.setFormatter(console_formatter)
-
+        console_formatter = logging.Formatter(formatter)
+        console_handler.setFormatter(console_formatter)
         self.logger.addHandler(console_handler)
 
     def log_to_file(
@@ -48,11 +49,13 @@ class Logger:
         # so we can get the root package name for log filenames.
         log_name = self.logger.name.split('.')[0] + '.log'
         log_file = os.path.join(location, log_name)
+
         file_handler = logging.handlers.RotatingFileHandler(
             log_file,
             maxBytes=log_size,
             backupCount=num_of_logs,
         )
+
         file_formatter = logging.Formatter(formatter)
         file_handler.setFormatter(file_formatter)
         self.logger.addHandler(file_handler)

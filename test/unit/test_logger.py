@@ -34,6 +34,7 @@ def test_log_to_console():
     my_logger.log_to_console()
 
     assert type(my_logger.logger.handlers[0]) == logging.StreamHandler
+    assert my_logger.logger.handlers[0].formatter._fmt == '%(message)s'
 
 
 def test_log_to_console_with_formatter():
