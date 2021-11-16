@@ -10,7 +10,7 @@ DEFAULT_LOG_BACKUP_COUNT = 5
 
 class Logger:
     def __init__(self, name: str, level: str = 'INFO'):
-        """Setup project logging based on configuration.
+        """Setup a logger based on a provided set of input.
 
         Each module that requires logging should instantiate a new class and pass a
         new name based on the module using logging. Typically for most purposes, this
@@ -24,6 +24,7 @@ class Logger:
         self.logger.setLevel(log_level)
 
     def log_to_console(self, formatter: Optional[str] = None) -> None:
+        """Adds a console handler to a logger."""
         console_handler = logging.StreamHandler()
 
         if formatter:
@@ -39,6 +40,7 @@ class Logger:
         log_size: int = DEFAULT_LOG_MAX_BYTES,
         num_of_logs: int = DEFAULT_LOG_BACKUP_COUNT,
     ) -> None:
+        """Adds a file handler to a logger."""
         if not os.path.exists(location):
             os.makedirs(location)
 
@@ -56,6 +58,7 @@ class Logger:
         self.logger.addHandler(file_handler)
 
     def _validate_log_level(self) -> int:
+        """Internal utility to validate the input log level is valid, raise an error if not."""
         log_levels = {
             'CRITICAL': logging.CRITICAL,  # 50
             'ERROR': logging.ERROR,  # 40
@@ -69,7 +72,7 @@ class Logger:
             log_level = log_levels[self.level.upper()]
         except KeyError as error:
             raise KeyError(
-                f'Could not setup Woodchips due to invalid log level: {error}, must be one of {levels.keys()}'  # noqa
+                f'Could not setup Woodchips due to invalid log level: {error}, must be one of {log_levels.keys()}'  # noqa
             )
 
         return log_level
