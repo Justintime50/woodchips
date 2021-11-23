@@ -128,4 +128,5 @@ def test_get_logger():
 
     retrieved_logger = woodchips.get(custom_logger_name)
 
+    assert retrieved_logger == my_logger.logger
     assert retrieved_logger.name == my_logger.name == custom_logger_name

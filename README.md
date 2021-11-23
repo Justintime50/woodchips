@@ -34,9 +34,10 @@ make install
 * **Logging to a file:** Woodchips will automatically roll over your log files once it reaches the `log_size`. You can configure `num_of_logs` to specify how many log files will be kept in the rotation.
 * **Formatters:** You can configure the format of log files per handler (console and/or files); however, defaults are set (and shown below) if you just need basic logging.
 
+### Setting up Woodchips
+
 ```python
 import woodchips
-
 
 # Setup a new logger instance
 my_logger = woodchips.Logger(
@@ -54,9 +55,21 @@ my_logger.log_to_file(
     log_size=500000,  # Size of a single file in bytes
     num_of_logs=10,  # Number of log files to keep in the rotation
 )
+```
 
-# Log a message (will be logged to console and a file based on the config above)
-my_logger.logger.info('This is how to setup Woodchips!')
+### Using Woodchips
+
+```python
+import woodchips
+
+# Retrieve a logger instance by name (assumes it's already been created)
+retrieved_logger = woodchips.get('my_logger_name')
+
+# Log a message (will be logged to console and a file based on the example from above)
+retrieved_logger.info('This is how to setup Woodchips!')
+
+# Alternatively, you can call the `logger` method on the initially created instance without retrieving
+# created_logger.logger.info('You can call a log level on the logger method here.')
 ```
 
 ### Logger Levels
