@@ -116,3 +116,16 @@ def test_log_to_file_dir_doesnt_exist(mock_makedirs):
         my_logger.log_to_file(location='mock_dir')
 
     mock_makedirs.assert_called_once()
+
+
+def test_get_logger():
+    """Tests that we `get` a logger instance by name."""
+    custom_logger_name = 'custom_logger_name'
+
+    my_logger = woodchips.Logger(
+        name=custom_logger_name,
+    )
+
+    retrieved_logger = woodchips.get(custom_logger_name)
+
+    assert retrieved_logger.name == my_logger.name == custom_logger_name

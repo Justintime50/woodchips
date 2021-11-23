@@ -11,12 +11,12 @@ class Logger:
     def __init__(self, name: str, level: str = 'INFO'):
         """Setup a logger based on a provided set of input.
 
-        * name: Each module that requires logging should instantiate a new class and pass a
+        - name: Each module that requires logging should instantiate a new class and pass a
         new name based on the module using logging. Typically for most purposes, this
         should be `__name__` passed as `name` or the name of your package.
-        * level: Every logger needs a level. Logged messages of a greater or equal value
+        - level: Every logger needs a level. Logged messages of a greater or equal value
         to the log level will be shown.
-        * logger: This is the actual `logging.Logger` object wrapped on `woodchips.Logger`,
+        - logger: This is the actual `logging.Logger` object wrapped on `woodchips.Logger`,
         call your logging actions on this property such as `info()` or `warning()`.
         """
         self.name = name
@@ -79,3 +79,10 @@ class Logger:
             )
 
         return log_level
+
+
+def get(logger_name: str) -> logging.Logger:
+    """Gets a logger instance by name."""
+    logger = logging.getLogger(logger_name)
+
+    return logger
