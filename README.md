@@ -13,7 +13,7 @@ The cutest little logger you've ever seen.
 
 </div>
 
-> Logs are just a bunch of woodchips
+> Aren't logs just a bunch of woodchips?
 
 I found myself using the same logging setup logic over and over in projects so I decided to pull it out into its own little package. Woodchips gives you everything you need to setup the Python logging library in your project, all without the need to import or call on the `logging` package making logging incredibly simple and clean.
 
@@ -29,22 +29,49 @@ make install
 
 ## Usage
 
-* **NOTE:** Woodchips currently assumes you want to print logs to console in addition to saving to a file. In the future, this may be configurable.
-* Logs saved to a file will appear like `2021-11-14 00:14:16,852 - INFO - Here is a custom message` while logs printed to console will simply contain the message.
-* Woodchips will automatically roll over your log files once a file reaches `200kb`. There will be 5 log files for a total log size of `1mb`.
+* A `Logger` instance must be created to use Woodchips. Simply specify a name and logging level, tell Woodchips where to log items (console and/or files), and start chipping away!
+* Need multiple loggers, no problem. Spin up separate `Logger` instances for your needs. Maybe you need a console logger for certain output that requires a specific format while another module needs a generic file formatter. Woodchips makes it easy to setup and configure all your loggers.
+* **Logging to a file:** Woodchips will automatically roll over your log files once it reaches the `log_size`. You can configure `num_of_logs` to specify how many log files will be kept in the rotation.
+* **Formatters:** You can configure the format of log files per handler (console and/or files); however, defaults are set (and shown below) if you just need basic logging.
+
+### Setting up Woodchips
 
 ```python
 import woodchips
 
-
-logger = woodchips.setup(
-    logger_name=__name__,  # Should be the name of your package
-    logger_location='my_path',
-    logger_level='INFO'
+# Setup a new logger instance
+logger = woodchips.Logger(
+    name='my_logger_name',  # The name of your logger instance, often will be `__name__`
+    level='INFO',  # The log level you want to use
 )
 
-# You can use any of the *lowercase* log levels seen below when logging a message
+# Setup console logging
+logger.log_to_console(formatter='%(message)s')
+
+# Setup file logging
+logger.log_to_file(
+    location='path/to/log_files',
+    formatter='%(asctime)s - %(module)s.%(funcName)s - %(levelname)s - %(message)s',
+    log_size=200000,  # Size of a single file in bytes
+    num_of_logs=5,  # Number of log files to keep in the rotation
+)
+```
+
+### Using Woodchips
+
+```python
+import woodchips
+
+# Retrieve a logger instance by name (assumes it's already been created)
+logger = woodchips.get('my_logger_name')
+
+# Log a message (will be logged to console and a file based on the example from above)
 logger.info('This is how to setup Woodchips!')
+
+# Alternatively, you can call the `logger` method on the initially created instance without retrieving;
+# though, it's recommended to setup your logger at program start and then grap it with `get()` whenever needed
+# my_logger = woodchips.Logger(name='my_logger_name')
+# my_logger.logger.info('You can alternatiely call a log level on the logger method here.')
 ```
 
 ### Logger Levels
