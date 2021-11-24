@@ -21,7 +21,7 @@ class Logger:
         """
         self.name = name
         self.level = level
-        self.logger = logging.getLogger(self.name)
+        self.logger = get(self.name)
 
         log_level = self._validate_log_level()
         self.logger.setLevel(log_level)
