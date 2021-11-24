@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.2.1 (2021-11-23)
+
+* Changed the order of the default file formatter to show level before function name for easier scanning of log files
+
 ## v0.2.0 (2021-11-23)
 
 * Completely refactored the app to use a `Logger` class for better granularity and control over the configuration of each logger instance.

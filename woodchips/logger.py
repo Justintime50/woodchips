@@ -37,7 +37,7 @@ class Logger:
     def log_to_file(
         self,
         location: str,
-        formatter: str = '%(asctime)s - %(module)s.%(funcName)s - %(levelname)s - %(message)s',
+        formatter: str = '%(asctime)s - %(levelname)s - %(module)s.%(funcName)s - %(message)s',
         log_size: int = DEFAULT_LOG_MAX_BYTES,
         num_of_logs: int = DEFAULT_LOG_BACKUP_COUNT,
     ) -> None:
