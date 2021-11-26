@@ -22,8 +22,8 @@ def test_logger_class(mock_make_dirs):
         name=function_name,
     )
 
-    assert my_logger.logger.name == function_name
-    assert logging.getLevelName(my_logger.logger.getEffectiveLevel()) == 'INFO'
+    assert my_logger._logger.name == function_name
+    assert logging.getLevelName(my_logger._logger.getEffectiveLevel()) == 'INFO'
 
 
 def test_log_to_console():
@@ -33,8 +33,8 @@ def test_log_to_console():
     my_logger = woodchips.Logger(name=function_name)
     my_logger.log_to_console()
 
-    assert type(my_logger.logger.handlers[0]) == logging.StreamHandler
-    assert my_logger.logger.handlers[0].formatter._fmt == '%(message)s'
+    assert type(my_logger._logger.handlers[0]) == logging.StreamHandler
+    assert my_logger._logger.handlers[0].formatter._fmt == '%(message)s'
 
 
 def test_log_to_console_with_formatter():
@@ -44,8 +44,8 @@ def test_log_to_console_with_formatter():
     my_logger = woodchips.Logger(name=function_name)
     my_logger.log_to_console(formatter='%(asctime)s')
 
-    assert type(my_logger.logger.handlers[0]) == logging.StreamHandler
-    assert my_logger.logger.handlers[0].formatter._fmt == '%(asctime)s'
+    assert type(my_logger._logger.handlers[0]) == logging.StreamHandler
+    assert my_logger._logger.handlers[0].formatter._fmt == '%(asctime)s'
 
 
 @pytest.mark.parametrize(
@@ -98,11 +98,11 @@ def test_log_to_file():
             num_of_logs=2,
         )
 
-        assert type(my_logger.logger.handlers[0]) == logging.handlers.RotatingFileHandler
-        assert my_logger.logger.handlers[0].formatter._fmt == '%(asctime)s'
-        assert function_name in my_logger.logger.handlers[0].baseFilename
-        assert my_logger.logger.handlers[0].maxBytes == 10000
-        assert my_logger.logger.handlers[0].backupCount == 2
+        assert type(my_logger._logger.handlers[0]) == logging.handlers.RotatingFileHandler
+        assert my_logger._logger.handlers[0].formatter._fmt == '%(asctime)s'
+        assert function_name in my_logger._logger.handlers[0].baseFilename
+        assert my_logger._logger.handlers[0].maxBytes == 10000
+        assert my_logger._logger.handlers[0].backupCount == 2
         assert os.path.exists(temp_dir)
 
 
@@ -128,5 +128,5 @@ def test_get_logger():
 
     retrieved_logger = woodchips.get(custom_logger_name)
 
-    assert retrieved_logger == my_logger.logger
+    assert retrieved_logger == my_logger._logger
     assert retrieved_logger.name == my_logger.name == custom_logger_name

@@ -11,20 +11,24 @@ class Logger:
     def __init__(self, name: str, level: str = 'INFO'):
         """Setup a logger based on a provided set of input.
 
-        - name: Each module that requires logging should instantiate a new class and pass a
+        - `name`: Each module that requires logging should instantiate a new class and pass a
         new name based on the module using logging. Typically for most purposes, this
-        should be `__name__` passed as `name` or the name of your package.
-        - level: Every logger needs a level. Logged messages of a greater or equal value
-        to the log level will be shown.
-        - logger: This is the actual `logging.Logger` object wrapped on `woodchips.Logger`,
-        call your logging actions on this property such as `info()` or `warning()`.
+        should be `__name__` passed as `name` or the root name of your package.
+        - `level`: Every logger needs a level. Logged messages of a greater or equal value
+        to the log level will be logged while those of a lesser value will be ignored.
+        - `_logger`: This is the actual `logging.Logger` object wrapped on `woodchips.Logger`. This
+        is not intended to be used externally, instead use `woodchips.get()` to call methods such
+        as `.info()`, `.warning()` etc.
         """
+        # Parameter variables
         self.name = name
         self.level = level
-        self.logger = get(self.name)
 
+        # Internal variables
+        self._logger = get(self.name)
         log_level = self._validate_log_level()
-        self.logger.setLevel(log_level)
+
+        self._logger.setLevel(log_level)
 
     def log_to_console(self, formatter: str = '%(message)s') -> None:
         """Adds a console handler to a logger."""
@@ -32,7 +36,7 @@ class Logger:
 
         console_formatter = logging.Formatter(formatter)
         console_handler.setFormatter(console_formatter)
-        self.logger.addHandler(console_handler)
+        self._logger.addHandler(console_handler)
 
     def log_to_file(
         self,
@@ -47,7 +51,7 @@ class Logger:
 
         # Splitting on the period assuming the user specified `__name__`
         # so we can get the root package name for log filenames.
-        log_name = self.logger.name.split('.')[0] + '.log'
+        log_name = self._logger.name.split('.')[0] + '.log'
         log_file = os.path.join(location, log_name)
 
         file_handler = logging.handlers.RotatingFileHandler(
@@ -58,7 +62,7 @@ class Logger:
 
         file_formatter = logging.Formatter(formatter)
         file_handler.setFormatter(file_formatter)
-        self.logger.addHandler(file_handler)
+        self._logger.addHandler(file_handler)
 
     def _validate_log_level(self) -> int:
         """Internal utility to validate the input log level is valid, raise an error if not."""
@@ -82,7 +86,10 @@ class Logger:
 
 
 def get(logger_name: str) -> logging.Logger:
-    """Gets a logger instance by name."""
+    """Gets a logger instance by name.
+
+    NOTE: If no logger exists with the passed name, a default will be created.
+    """
     logger = logging.getLogger(logger_name)
 
     return logger

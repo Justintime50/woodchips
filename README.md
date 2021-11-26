@@ -32,6 +32,7 @@ make install
 * A `Logger` instance must be created to use Woodchips. Simply specify a name and logging level, tell Woodchips where to log items (console and/or files), and start chipping away!
 * Need multiple loggers, no problem. Spin up separate `Logger` instances for your needs. Maybe you need a console logger for certain output that requires a specific format while another module needs a generic file formatter. Woodchips makes it easy to setup and configure all your loggers.
 * **Logging to a file:** Woodchips will automatically roll over your log files once it reaches the `log_size`. You can configure `num_of_logs` to specify how many log files will be kept in the rotation.
+    * **NOTE:** Woodchips has a very small default log size of just `200kb` with `5` log files for a total of `1mb` of logs. For production applications, these values may need to be drastically increased.
 * **Formatters:** You can configure the format of log files per handler (console and/or files); however, defaults are set (and shown below) if you just need basic logging.
 
 ### Setting up Woodchips
@@ -67,11 +68,6 @@ logger = woodchips.get('my_logger_name')
 
 # Log a message (will be logged to console and a file based on the example from above)
 logger.info('This is how to setup Woodchips!')
-
-# Alternatively, you can call the `logger` method on the initially created instance without retrieving;
-# though, it's recommended to setup your logger at program start and then grap it with `get()` whenever needed
-# my_logger = woodchips.Logger(name='my_logger_name')
-# my_logger.logger.info('You can alternatiely call a log level on the logger method here.')
 ```
 
 ### Logger Levels

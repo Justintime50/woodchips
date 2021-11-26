@@ -14,7 +14,7 @@ DEV_REQUIREMENTS = [
 
 setuptools.setup(
     name='woodchips',
-    version='0.2.1',
+    version='0.2.2',
     description='The cutest little logger you\'ve ever seen.',
     long_description=long_description,
     long_description_content_type="text/markdown",

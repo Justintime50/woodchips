@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.2.2 (2021-11-25)
+
+* Makes the previously exposed `logger` class variable private as it was intended to remain internal and not be exposed
+
 ## v0.2.1 (2021-11-23)
 
 * Changed the order of the default file formatter to show level before function name for easier scanning of log files
