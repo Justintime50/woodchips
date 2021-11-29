@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.2.3 (2021-11-29)
+
+* Adds a `py.typed` file for `mypy` type checking
+* Adds `mypy` as a dev dependency
+
 ## v0.2.2 (2021-11-25)
 
 * Makes the previously exposed `logger` class variable private as it was intended to remain internal and not be exposed
