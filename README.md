@@ -15,7 +15,7 @@ The cutest little logger you've ever seen.
 
 > Aren't logs just a bunch of woodchips?
 
-I found myself using the same logging setup logic over and over in projects so I decided to pull it out into its own little package. Woodchips gives you everything you need to setup the Python logging library in your project, all without the need to import or call on the `logging` package making logging incredibly simple and clean.
+Woodchips was created to be the cutest little logger you've ever seen. I wanted something dead simple and reusable as I found myself using the same logging setup over and over in projects. Woodchips gives you everything you need to setup the Python logging library in your project, all without the need to import or call on the `logging` package, know the various syntaxes for setting up handlers and formatters, etc which makes logging with Woodchips incredibly simple and clean.
 
 ## Install
 
@@ -29,11 +29,11 @@ make install
 
 ## Usage
 
-* A `Logger` instance must be created to use Woodchips. Simply specify a name and logging level, tell Woodchips where to log items (console and/or files), and start chipping away!
-* Need multiple loggers, no problem. Spin up separate `Logger` instances for your needs. Maybe you need a console logger for certain output that requires a specific format while another module needs a generic file formatter. Woodchips makes it easy to setup and configure all your loggers.
-* **Logging to a file:** Woodchips will automatically roll over your log files once it reaches the `log_size`. You can configure `num_of_logs` to specify how many log files will be kept in the rotation.
-    * **NOTE:** Woodchips has a very small default log size of just `200kb` with `5` log files for a total of `1mb` of logs. For production applications, these values may need to be drastically increased.
-* **Formatters:** You can configure the format of log files per handler (console and/or files); however, defaults are set (and shown below) if you just need basic logging.
+- A `Logger` instance must be created to use Woodchips. Simply specify a name and logging level, tell Woodchips where to log items (console and/or files), and start chipping away!
+- Need multiple loggers, no problem. Spin up separate `Logger` instances for your needs. Maybe you need a console logger for certain output that requires a specific format while another module needs a generic file formatter. Woodchips makes it easy to setup and configure all your loggers.
+- **Logging to a file:** Woodchips will automatically roll over your log files once it reaches the `log_size`. You can configure `num_of_logs` to specify how many log files will be kept in the rotation.
+  - **NOTE:** Woodchips has a very small default log size of just `200kb` with `5` log files for a total of `1mb` of logs. For production applications, these values may need to be drastically increased.
+- **Formatters:** You can configure the format of log files per handler (console and/or files); however, defaults are set (and shown below) if you just need basic logging.
 
 ### Setting up Woodchips
 
@@ -72,12 +72,12 @@ logger.info('This is how to setup Woodchips!')
 
 ### Logger Levels
 
-* CRITICAL
-* ERROR
-* WARNING
-* INFO
-* DEBUG
-* NOTSET
+- CRITICAL
+- ERROR
+- WARNING
+- INFO
+- DEBUG
+- NOTSET
 
 ## Development
 

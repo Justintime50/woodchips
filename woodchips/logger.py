@@ -5,6 +5,7 @@ import os
 # 200kb * 5 files = 1mb of logs
 DEFAULT_LOG_MAX_BYTES = 200000  # 200kb
 DEFAULT_LOG_BACKUP_COUNT = 5
+DEFAULT_FORMATTER = '%(asctime)s - %(levelname)s - %(module)s.%(funcName)s - %(message)s'
 
 
 class Logger:
@@ -41,7 +42,7 @@ class Logger:
     def log_to_file(
         self,
         location: str,
-        formatter: str = '%(asctime)s - %(levelname)s - %(module)s.%(funcName)s - %(message)s',
+        formatter: str = DEFAULT_FORMATTER,
         log_size: int = DEFAULT_LOG_MAX_BYTES,
         num_of_logs: int = DEFAULT_LOG_BACKUP_COUNT,
     ) -> None:
@@ -49,8 +50,8 @@ class Logger:
         if not os.path.exists(location):
             os.makedirs(location)
 
-        # Splitting on the period assuming the user specified `__name__`
-        # so we can get the root package name for log filenames.
+        # Splitting on the period assumes the user specified `__name__` so we can get
+        # the root package name for log filenames, otherwise we'll just use the name.
         log_name = self._logger.name.split('.')[0] + '.log'
         log_file = os.path.join(location, log_name)
 
@@ -86,9 +87,10 @@ class Logger:
 
 
 def get(logger_name: str) -> logging.Logger:
-    """Gets a logger instance by name.
+    """Gets or creates a logger instance by name.
 
-    NOTE: If no logger exists with the passed name, a default will be created.
+    If no logger exists with the specified name, a new logger object
+    will be created with that name.
     """
     logger = logging.getLogger(logger_name)
 

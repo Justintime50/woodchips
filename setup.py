@@ -5,17 +5,19 @@ with open('README.md', 'r') as fh:
 
 DEV_REQUIREMENTS = [
     'black',
+    'build',
     'coveralls == 3.*',
     'flake8',
     'isort',
     'mypy',
     'pytest == 7.*',
     'pytest-cov == 3.*',
+    'twine == 4.*',
 ]
 
 setuptools.setup(
     name='woodchips',
-    version='0.2.3',
+    version='0.2.4',
     description='The cutest little logger you\'ve ever seen.',
     long_description=long_description,
     long_description_content_type="text/markdown",
