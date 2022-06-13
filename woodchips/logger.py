@@ -5,11 +5,15 @@ import os
 # 200kb * 5 files = 1mb of logs
 DEFAULT_LOG_MAX_BYTES = 200000  # 200kb
 DEFAULT_LOG_BACKUP_COUNT = 5
-DEFAULT_FORMATTER = '%(asctime)s - %(levelname)s - %(module)s.%(funcName)s - %(message)s'
+
+DEFAULT_LOG_LEVEL = 'INFO'
+
+DEFAULT_CONSOLE_FORMATTER = '%(message)s'
+DEFAULT_FILE_FORMATTER = '%(asctime)s - %(levelname)s - %(module)s.%(funcName)s - %(message)s'
 
 
 class Logger:
-    def __init__(self, name: str, level: str = 'INFO'):
+    def __init__(self, name: str, level: str = DEFAULT_LOG_LEVEL):
         """Setup a logger based on a provided set of input.
 
         - `name`: Each module that requires logging should instantiate a new class and pass a
@@ -31,7 +35,7 @@ class Logger:
 
         self._logger.setLevel(log_level)
 
-    def log_to_console(self, formatter: str = '%(message)s') -> None:
+    def log_to_console(self, formatter: str = DEFAULT_CONSOLE_FORMATTER) -> None:
         """Adds a console handler to a logger."""
         console_handler = logging.StreamHandler()
 
@@ -42,7 +46,7 @@ class Logger:
     def log_to_file(
         self,
         location: str,
-        formatter: str = DEFAULT_FORMATTER,
+        formatter: str = DEFAULT_FILE_FORMATTER,
         log_size: int = DEFAULT_LOG_MAX_BYTES,
         num_of_logs: int = DEFAULT_LOG_BACKUP_COUNT,
     ) -> None:
