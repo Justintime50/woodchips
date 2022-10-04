@@ -1,4 +1,8 @@
-from woodchips.logger import Logger, get
+from woodchips.logger import (
+    Logger,
+    get,
+)
+
 
 __all__ = [
     'get',

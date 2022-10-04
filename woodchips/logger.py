@@ -2,6 +2,7 @@ import logging
 import logging.handlers
 import os
 
+
 # 200kb * 5 files = 1mb of logs
 DEFAULT_LOG_MAX_BYTES = 200000  # 200kb
 DEFAULT_LOG_BACKUP_COUNT = 5

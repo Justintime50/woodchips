@@ -2,11 +2,15 @@ import inspect
 import logging
 import os
 import tempfile
-from unittest.mock import mock_open, patch
+from unittest.mock import (
+    mock_open,
+    patch,
+)
 
 import pytest
 
 import woodchips
+
 
 MOCK_LOG_PATH = os.path.join('test', 'mock-dir')
 LOG_PATH_EXISTS = os.path.join('test', 'logs')
