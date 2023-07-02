@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.0.0 (2023-07-01)
+
+- Drops support for Python 3.7
+
 ## v0.2.4 (2022-04-19)
 
 - Small improvements to code, documentation, and releasing process

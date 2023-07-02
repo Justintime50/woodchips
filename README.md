@@ -24,7 +24,7 @@ Woodchips was created to be the cutest little logger you've ever seen. I wanted 
 pip3 install woodchips
 
 # Install locally
-make install
+just install
 ```
 
 ## Usage
@@ -83,5 +83,5 @@ logger.info('This is how to setup Woodchips!')
 
 ```bash
 # Get a comprehensive list of development tools
-make help
+just --list
 ```
