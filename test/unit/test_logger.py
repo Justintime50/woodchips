@@ -37,7 +37,7 @@ def test_log_to_console():
     my_logger = woodchips.Logger(name=function_name)
     my_logger.log_to_console()
 
-    assert type(my_logger._logger.handlers[0]) == logging.StreamHandler
+    assert isinstance(my_logger._logger.handlers[0], logging.StreamHandler)
     assert my_logger._logger.handlers[0].formatter._fmt == '%(message)s'
 
 
@@ -48,7 +48,7 @@ def test_log_to_console_with_formatter():
     my_logger = woodchips.Logger(name=function_name)
     my_logger.log_to_console(formatter='%(asctime)s')
 
-    assert type(my_logger._logger.handlers[0]) == logging.StreamHandler
+    assert isinstance(my_logger._logger.handlers[0], logging.StreamHandler)
     assert my_logger._logger.handlers[0].formatter._fmt == '%(asctime)s'
 
 
@@ -102,7 +102,7 @@ def test_log_to_file():
             num_of_logs=2,
         )
 
-        assert type(my_logger._logger.handlers[0]) == logging.handlers.RotatingFileHandler
+        assert isinstance(my_logger._logger.handlers[0], logging.handlers.RotatingFileHandler)
         assert my_logger._logger.handlers[0].formatter._fmt == '%(asctime)s'
         assert function_name in my_logger._logger.handlers[0].baseFilename
         assert my_logger._logger.handlers[0].maxBytes == 10000
