@@ -82,8 +82,7 @@ def test_validate_log_level_invalid_level():
         my_logger._validate_log_level()
 
     assert (
-        str(error.value)
-        == '"Could not setup Woodchips due to invalid log level: \'BAD_LOG_LEVEL\', must be one of'
+        str(error.value) == '"Could not setup Woodchips due to invalid log level: \'BAD_LOG_LEVEL\', must be one of'
         ' dict_keys([\'CRITICAL\','
         ' \'ERROR\', \'WARNING\', \'INFO\', \'DEBUG\', \'NOTSET\'])"'
     )
