@@ -7,10 +7,10 @@ import os
 DEFAULT_LOG_MAX_BYTES = 200000  # 200kb
 DEFAULT_LOG_BACKUP_COUNT = 5
 
-DEFAULT_LOG_LEVEL = 'INFO'
+DEFAULT_LOG_LEVEL = "INFO"
 
-DEFAULT_CONSOLE_FORMATTER = '%(message)s'
-DEFAULT_FILE_FORMATTER = '%(asctime)s - %(levelname)s - %(module)s.%(funcName)s - %(message)s'
+DEFAULT_CONSOLE_FORMATTER = "%(message)s"
+DEFAULT_FILE_FORMATTER = "%(asctime)s - %(levelname)s - %(module)s.%(funcName)s - %(message)s"
 
 
 class Logger:
@@ -57,7 +57,7 @@ class Logger:
 
         # Splitting on the period assumes the user specified `__name__` so we can get
         # the root package name for log filenames, otherwise we'll just use the name.
-        log_name = self._logger.name.split('.')[0] + '.log'
+        log_name = self._logger.name.split(".")[0] + ".log"
         log_file = os.path.join(location, log_name)
 
         file_handler = logging.handlers.RotatingFileHandler(
@@ -73,19 +73,19 @@ class Logger:
     def _validate_log_level(self) -> int:
         """Internal utility to validate the input log level is valid, raise an error if not."""
         log_levels = {
-            'CRITICAL': logging.CRITICAL,  # 50
-            'ERROR': logging.ERROR,  # 40
-            'WARNING': logging.WARNING,  # 30
-            'INFO': logging.INFO,  # 20
-            'DEBUG': logging.DEBUG,  # 10
-            'NOTSET': logging.NOTSET,  # 0
+            "CRITICAL": logging.CRITICAL,  # 50
+            "ERROR": logging.ERROR,  # 40
+            "WARNING": logging.WARNING,  # 30
+            "INFO": logging.INFO,  # 20
+            "DEBUG": logging.DEBUG,  # 10
+            "NOTSET": logging.NOTSET,  # 0
         }
 
         try:
             log_level = log_levels[self.level.upper()]
         except KeyError as error:
             raise KeyError(
-                f'Could not setup Woodchips due to invalid log level: {error}, must be one of {log_levels.keys()}'  # noqa
+                f"Could not setup Woodchips due to invalid log level: {error}, must be one of {log_levels.keys()}"  # noqa
             )
 
         return log_level

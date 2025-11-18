@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2.0.0 (2025-11-18)
+
+- Drops support for Python 3.8 and 3.9
+- Bumps deps
+
 ## v1.0.0 (2023-07-01)
 
 - Drops support for Python 3.7

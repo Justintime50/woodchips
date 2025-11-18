@@ -5,7 +5,7 @@
 The cutest little logger you've ever seen.
 
 [![Build Status](https://github.com/Justintime50/woodchips/workflows/build/badge.svg)](https://github.com/Justintime50/woodchips/actions)
-[![Coverage Status](https://coveralls.io/repos/github/Justintime50/woodchips/badge.svg?branch=main)](https://coveralls.io/github/Justintime50/woodchips?branch=main)
+[![Coverage Status](https://img.shields.io/codecov/c/github/justintime50/woodchips)](https://app.codecov.io/github/Justintime50/woodchips)
 [![PyPi](https://img.shields.io/pypi/v/woodchips)](https://pypi.org/project/woodchips)
 [![Licence](https://img.shields.io/github/license/Justintime50/woodchips)](LICENSE)
 

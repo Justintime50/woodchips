@@ -5,6 +5,6 @@ from woodchips.logger import (
 
 
 __all__ = [
-    'get',
-    'Logger',
+    "get",
+    "Logger",
 ]
