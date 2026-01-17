@@ -11,7 +11,6 @@ import pytest
 
 import woodchips
 
-
 MOCK_LOG_PATH = os.path.join("test", "mock-dir")
 LOG_PATH_EXISTS = os.path.join("test", "logs")
 LOG_LEVEL = "INFO"

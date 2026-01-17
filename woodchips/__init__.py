@@ -3,7 +3,6 @@ from woodchips.logger import (
     get,
 )
 
-
 __all__ = [
     "get",
     "Logger",
